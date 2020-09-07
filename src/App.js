@@ -1,34 +1,39 @@
 import React from "react";
-class Square extends React.Component {
-	// A function of Constructors is used to initialize state
-	// super must always be called when defining constructor of a subclass
-	// constructor(props) {
-	// 	super(props);
-	// 	this.state = {
-	// 		value: null
-	// 	};
-	// }
 
-	render() {
+
+// Controlled components
+// Changed to functional component
+function Square(props) {
+	 {
 		// passing props
 		return (
 			// remember => {} when working with event handlers.
 			<button className='square'
-			onClick={() => this.props.onClick(
-					{ value: 'X' }
-				)}>
-				{this.props.value}
+			onClick={props.onClick}>
+				{props.value}
 			</button>
 		);
-	}
+	
 }
 
 class Board extends React.Component {
+	// A function of Constructors is used to initialize state
+	// super must always be called when defining constructor of a subclass
 constructor(props) {
 	super (props);
 	this.state = {
 		squares: Array(9).fill(null),
 	};
+}
+
+// fucntion that onclick in Square calls
+//  Slice preserves immutability, same as assign for objects
+//  assign works just like spread on objects
+// simplitiy change detection determine rerender (pure components)
+handleClick(i) {
+	const squares = this.state.squares.slice();
+	squares[i] = 'X';
+	this.setState({squares: squares})
 }
 
 	renderSquare(i) {
@@ -77,5 +82,6 @@ class Game extends React.Component {
 }
 
 //  ===================
+
 
 export default Game;

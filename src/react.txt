@@ -1,0 +1,7 @@
+Whenever building dynamic lists (js lists), always assign a proper key
+ A component cannot inquire about its key.
+ 
+ Keys do not need to be globally unique; they only need to be unique between components and their siblings.
+ 
+It is best not to mutate data 
+

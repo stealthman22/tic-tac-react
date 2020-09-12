@@ -3,7 +3,7 @@ import React from "react";
 
 // Controlled components
 // Changed to functional component
-function Square(props) {
+function Square (props) {
 	// passing props
 	return (
 		// remember => {} when working with event handlers.
@@ -14,7 +14,7 @@ function Square(props) {
 }
 
 class Board extends React.Component {
-	renderSquare(i) {
+	renderSquare (i) {
 		//  making value to be updated by state!
 		return (
 			<Square
@@ -24,7 +24,7 @@ class Board extends React.Component {
 		);
 	}
 
-	render() {
+	render () {
 		return (
 			<div>
 				{/* <div className="status">{status}</div> */}
@@ -52,24 +52,24 @@ class Game extends React.Component {
 	// A function of Constructors is used to initialize state
 	// super must always be called when defining constructor of a subclass
 
-	constructor(props) {
+	constructor (props) {
 		super(props);
 		this.state = {
 			history: [
 				{
-					squares: Array(9).fill(null)
-				}
+					squares: Array(9).fill(null),
+				},
 			],
 			xIsNext: true,
-			stepNumber: 0
+			stepNumber: 0,
 		};
 	}
 
 	// fucntion that onclick in Square calls
 	//  Slice preserves immutability, same as assign for objects
 	//  assign works just like spread on objects
-	// simplitiy change detection determine rerender (pure components)
-	handleClick(i) {
+	// simple change detection determine rerender (pure components)
+	handleClick (i) {
 		const history = this.state.history.slice(0, this.state.stepNumber + 1);
 		const current = history[history.length - 1];
 		const squares = current.squares.slice();
@@ -83,22 +83,22 @@ class Game extends React.Component {
 			squares: squares,
 			history: history.concat([
 				{
-					squares: squares
-				}
+					squares: squares,
+				},
 			]),
 			stepNumber: history.length,
-			xIsNext: !this.state.xIsNext
+			xIsNext: !this.state.xIsNext,
 		});
 	}
 	// Handles time travel of moves
-	jumpTo(step) {
+	jumpTo (step) {
 		this.setState({
 			stepNumber: step,
-			xIsNext: step % 2 === 0
+			xIsNext: step % 2 === 0,
 		});
 	}
 
-	render() {
+	render () {
 		const history = this.state.history;
 		const current = history[this.state.stepNumber];
 		const winner = calculateWinner(current.squares);
@@ -146,7 +146,7 @@ class Game extends React.Component {
 //  ===================
 
 // helper function for tic-tac-toe winner
-function calculateWinner(squares) {
+function calculateWinner (squares) {
 	const lines = [
 		[ 0, 1, 2 ],
 		[ 3, 4, 5 ],
@@ -155,7 +155,7 @@ function calculateWinner(squares) {
 		[ 1, 4, 7 ],
 		[ 2, 5, 8 ],
 		[ 0, 4, 8 ],
-		[ 2, 4, 6 ]
+		[ 2, 4, 6 ],
 	];
 	for (let i = 0; i < lines.length; i++) {
 		const [ a, b, c ] = lines[i];
